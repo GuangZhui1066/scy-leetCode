@@ -2,12 +2,15 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * 146. LRU 缓存
+ * https://leetcode.cn/problems/lru-cache
+ */
 class LRUCache {
 
     private int capacity;
     HashMap<Integer, Integer> cache;
     List<Integer> usedList;
-
 
     public LRUCache(int capacity) {
         this.capacity = capacity;
