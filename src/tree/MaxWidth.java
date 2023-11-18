@@ -5,6 +5,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
+import javafx.util.Pair;
 import tree.common.TreeNode;
 
 /**
@@ -12,6 +13,58 @@ import tree.common.TreeNode;
  * https://leetcode.cn/problems/maximum-width-of-binary-tree/
  */
 public class MaxWidth {
+
+    /**
+     * 给每个节点编号
+     * 然后层序遍历，每次把当前层的节点都取出来
+     *
+     *        1
+     *      /   \
+     *     2(n)  3
+     *    / \
+     *   2n 2n+1
+     */
+    public int widthOfBinaryTree(TreeNode root) {
+        if (root == null) {
+            return 0;
+        }
+
+        int maxWidth = 0;
+        // 队列中存放的是 <节点，编号> 的键值对
+        Queue<Pair<TreeNode,Integer>> queue = new LinkedList<>();
+        // 根节点编号为 1
+        queue.offer(new Pair<>(root, 1));
+        while (!queue.isEmpty()) {
+            List<Pair<TreeNode,Integer>> currentLevelNodes = new ArrayList<>();
+            while (!queue.isEmpty()) {
+                currentLevelNodes.add(queue.poll());
+            }
+
+            // 当前层最右边的节点编号和最左边的节点编号之差即为当前层宽度
+            int currentWidth = currentLevelNodes.get(currentLevelNodes.size() - 1).getValue() - currentLevelNodes.get(0).getValue() + 1;
+            maxWidth = Math.max(currentWidth, maxWidth);
+
+            // 将下一层的所有节点入队
+            for (Pair<TreeNode, Integer> pair : currentLevelNodes) {
+                Integer num = pair.getValue();
+                TreeNode node = pair.getKey();
+                if (node.left != null) {
+                    queue.offer(new Pair<>(node.left, num * 2));
+                }
+                if (node.right != null) {
+                    queue.offer(new Pair<>(node.right, num * 2 + 1));
+                }
+            }
+        }
+
+        return maxWidth;
+    }
+
+
+
+
+
+
 
     /**
      * 错误解法：
@@ -29,7 +82,7 @@ public class MaxWidth {
      *                        /\  /\  /\  /\   /\  /\ /\  /\
      *                       nil ..........................nil
      */
-    public int widthOfBinaryTree(TreeNode root) {
+    public int widthOfBinaryTreeWrong(TreeNode root) {
         if (root == null) {
             return 0;
         }
