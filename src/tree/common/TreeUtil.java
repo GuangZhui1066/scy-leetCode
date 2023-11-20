@@ -9,13 +9,6 @@ import java.util.Queue;
 public class TreeUtil {
 
 
-    public static void main(String[] args) {
-        String str = "[0,0,0,null,0,0,null,null,0,0,null,null,0,0,null,null,0,0,null]";
-        TreeNode tree = constructTree(str);
-        printTree(tree);
-    }
-
-
     /**
      * 构建一棵测试树
      *
@@ -98,6 +91,9 @@ public class TreeUtil {
     }
 
 
+    /**
+     * 画出树结构
+     */
     public static void printTree(TreeNode root) {
         int maxLevel = getTreeDepth(root);
         printNodeInternal(Collections.singletonList(root), 1, maxLevel);
