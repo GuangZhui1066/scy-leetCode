@@ -26,16 +26,13 @@ public class LongestSubstring {
         while (right < len) {
             Character newEle = s.charAt(right);
             Integer repeatIndex = exsit.get(newEle);
-            if (repeatIndex == null) {
+            if (repeatIndex == null || repeatIndex < left) {
                 // 没有重复
                 exsit.put(newEle, right);
                 longestLen = Math.max(longestLen, right - left + 1);
                 right++;
             } else {
-                // 这个字符已经出现过，将重复字符之前的全部清除
-                for (int i = left; i <= repeatIndex; i++) {
-                    exsit.remove(s.charAt(i));
-                }
+                // 这个字符已经出现过
                 exsit.put(newEle, right);
                 left = repeatIndex + 1;
                 right++;
