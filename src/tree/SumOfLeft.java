@@ -14,31 +14,31 @@ public class SumOfLeft {
     /**
      * 方法一：递归
      */
-    //public int sumOfLeftLeaves(TreeNode root) {
-    //    if (root == null) {
-    //        return 0;
-    //    }
-    //
-    //    TreeNode leftNode = root.left;
-    //    // 没有左子节点
-    //    if (leftNode == null) {
-    //        return sumOfLeftLeaves(root.right);
-    //    }
-    //    // 左子节点是叶子节点
-    //    else if (isLeafNode(leftNode)) {
-    //        return leftNode.val + sumOfLeftLeaves(root.right);
-    //    }
-    //    // 左子节点不是叶子节点
-    //    else {
-    //        return sumOfLeftLeaves(root.left) + sumOfLeftLeaves(root.right);
-    //    }
-    //}
+    public int sumOfLeftLeaves1(TreeNode root) {
+        if (root == null) {
+            return 0;
+        }
+
+        TreeNode leftNode = root.left;
+        // 没有左子节点
+        if (leftNode == null) {
+            return sumOfLeftLeaves1(root.right);
+        }
+        // 左子节点是叶子节点
+        else if (isLeafNode(leftNode)) {
+            return leftNode.val + sumOfLeftLeaves1(root.right);
+        }
+        // 左子节点不是叶子节点
+        else {
+            return sumOfLeftLeaves1(root.left) + sumOfLeftLeaves1(root.right);
+        }
+    }
 
 
     /**
      * 方法二：迭代
      */
-    public int sumOfLeftLeaves(TreeNode root) {
+    public int sumOfLeftLeaves2(TreeNode root) {
         if (root == null) {
             return 0;
         }
