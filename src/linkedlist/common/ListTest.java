@@ -10,7 +10,7 @@ public class ListTest {
         ListUtil.printList(listNode);
 
         ReverseList reverseList = new ReverseList();
-        ListNode revNode = reverseList.reverseList(listNode);
+        ListNode revNode = reverseList.reverseList1(listNode);
         ListUtil.printList(revNode);
     }
 

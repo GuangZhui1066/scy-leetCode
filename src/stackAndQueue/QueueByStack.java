@@ -1,4 +1,4 @@
-package queue;
+package stackAndQueue;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
