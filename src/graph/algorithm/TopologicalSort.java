@@ -20,8 +20,10 @@ public class TopologicalSort {
     public int vertexNum;
 
     /**
-     * 图中的边
+     * 用 邻接矩阵 表示图中的边
      * 如果 edge[i][j] == 1，说明图中存在一条从 i 节点到 j 节点的边
+     *
+     * 可以用二维列表代替二维数组，节省时间和空间。 比如 List<List<Integer>>
      */
     public int[][] edge;
 
