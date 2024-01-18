@@ -11,6 +11,8 @@ public class CoinChange {
 
     /**
      * 方法一：动态规划
+     *
+     * dp[i] 表示总金额为 i 最少需要的硬币数量，-1 表示无解
      */
     public int coinChange1(int[] coins, int amount) {
         int[] dp = new int[amount+1];
@@ -86,11 +88,23 @@ public class CoinChange {
     }
 
 
+    /**
+     * 方法三
+     *
+     * 完全背包问题
+     * dp[i][j] 表示从前 i 种硬币重复选几种，使其总和为 j，在所有组合中硬币数量最少的值
+     * dp[i][j] = Math.min( dp[i-1][j], dp[i][j-coins[i] + 1)
+     */
+    public int coinChange3(int[] coins, int amount) {
+        return 0;
+    }
+
+
     @Test
     public void test() {
         int[] coins = new int[]{186,419,83,408};
         int amount = 6249;
-        int result = coinChange2(coins, amount);
+        int result = coinChange3(coins, amount);
         System.out.println(result);
     }
 
