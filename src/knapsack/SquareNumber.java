@@ -1,5 +1,6 @@
 package knapsack;
 
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Queue;
@@ -98,10 +99,48 @@ public class SquareNumber {
     }
 
 
+    /**
+     * 方法三：背包问题
+     *
+     * 看作背包问题，从 1 ～ n^0.5 这几个数中重复选出几个，使其平方和等于背包总容量。
+     */
+    public int numSquares3(int n) {
+        // 计算物品的个数 —— n^0.5
+        int m = 0;
+        while (m * m <= n) {
+            m++;
+        }
+        m--;
+
+        // dp[i][j] 表示从 1 ～ i 这几个数字中重复选出部分数字，使其平方和等于 j，并且所选元素个数最小的值
+        // 状态转移方程：dp[i][j] = Math.min(dp[i - 1][j], dp[i][j - i * i] + 1)
+        int[][] dp = new int[m+1][n+1];
+        // 初始化为很大的值
+        for (int[] arr : dp) {
+            Arrays.fill(arr, n+1);
+        }
+        for (int i = 0; i <= m; i++) {
+            dp[i][0] = 0;
+        }
+
+        for (int i = 1; i <= m; i++) {
+            for (int j = 0; j <= n; j++) {
+                if (j >= i * i) {
+                    dp[i][j] = Math.min(dp[i - 1][j], dp[i][j - i * i] + 1);
+                } else {
+                    dp[i][j] = dp[i-1][j];
+                }
+            }
+        }
+
+        return dp[m][n];
+    }
+
+
     @Test
     public void test() {
         int n = 12;
-        int result = numSquares2(n);
+        int result = numSquares3(n);
         System.out.println(result);
     }
 
