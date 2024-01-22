@@ -76,7 +76,7 @@ public class TopologicalSort {
 
     /**
      * 构建一个 DAG
-     * @See graph/DAGCompute/有向无环图.jpg (节点A编号为 0，节点G编号为 6)
+     * @See graph/algorithm/有向无环图.jpg (节点A编号为 0，节点G编号为 6)
      */
     public void constructDAG() {
         vertexNum = 7;
