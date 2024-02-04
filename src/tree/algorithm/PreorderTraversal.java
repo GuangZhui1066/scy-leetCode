@@ -8,35 +8,35 @@ import java.util.List;
 import tree.common.TreeNode;
 
 /**
- * 94. 二叉树的中序遍历
+ * 144. 二叉树的前序遍历
  *
- *   访问顺序：左、根、右
+ *   访问顺序：根、左、右
  */
-public class InorderTraversal {
+public class PreorderTraversal {
 
     /**
      * 方法一：递归
      */
-    List<Integer> result = new ArrayList<>();
-    public List<Integer> inorderTraversal(TreeNode root) {
-        inorder(root);
+    public List<Integer> preorderTraversal(TreeNode root) {
+        List<Integer> result = new ArrayList<>();
+        preorder(root, result);
         return result;
     }
 
-    private void inorder(TreeNode node) {
+    private void preorder(TreeNode node, List<Integer> result) {
         if (node == null) {
             return;
         }
-        inorder(node.left);
         result.add(node.val);
-        inorder(node.right);
+        preorder(node.left, result);
+        preorder(node.right, result);
     }
 
 
     /**
      * 方法二：迭代
      */
-    public List<Integer> inorderTraversal2(TreeNode root) {
+    public List<Integer> preorderTraversal2(TreeNode root) {
         List<Integer> result = new ArrayList<>();
         if (root == null) {
             return result;
@@ -47,11 +47,13 @@ public class InorderTraversal {
         TreeNode cur = root;
         while (cur != null || !stack.isEmpty()) {
             while (cur != null) {
+                // 前序遍历和中序遍历的区别只是下面这一行的位置
+                // 前序遍历是在入栈的时候访问，中序遍历是在出栈的时候访问
+                result.add(cur.val);
                 stack.push(cur);
                 cur = cur.left;
             }
             cur = stack.pop();
-            result.add(cur.val);
             cur = cur.right;
         }
 
