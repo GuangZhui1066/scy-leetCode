@@ -18,35 +18,34 @@ public class FindRepeatDocument {
      *   但是空间复杂度 O(N)
      *
      * 思路二：
-     *   遍历，不断交换元素，使得 documents[i] == i
+     *   遍历，不断交换元素，使得 documents[0] == 0, documents[1] == 1, documents[2] == 2 ...
      */
     public int findRepeatDocument(int[] documents) {
         int len = documents.length;
 
         for (int i = 0; i < len; i++) {
-            int cur = documents[i];
-            if (cur == i) {
-                continue;
-            }
-            if (documents[cur] == cur) {
-                return cur;
-            } else {
-                documents[i] = documents[cur];
-                documents[cur] = cur;
+            while (documents[i] != i) {
+                // 数字重复
+                if (documents[documents[i]] == documents[i]) {
+                    return documents[i];
+                }
+                // 交换 i 和 documents[i] 位置上的元素
+                else {
+                    int temp = documents[i];
+                    documents[i] = documents[temp];
+                    documents[temp] = temp;
+                }
             }
         }
 
-        if (documents[len - 1] != len - 1) {
-            return documents[len - 1];
-        }
         return -1;
     }
 
 
     @Test
     public void test() {
-        //int[] documents = new int[]{2,5,3,0,5,0};
-        int[] documents = new int[]{3,4,2,1,1,0};
+        int[] documents = new int[]{2,5,3,0,5,0};
+        //int[] documents = new int[]{3,4,2,1,1,0};
 
         System.out.println(findRepeatDocument(documents));
     }
