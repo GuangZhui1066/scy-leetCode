@@ -9,6 +9,10 @@ public class WordSearch {
 
     /**
      * DFS + 回溯
+     *
+     * 假设 M 和 N 是 board 数组的长和宽，L 是 word 的长度，那么
+     *   时间复杂度: O(M * N * 4^L)
+     *   空间复杂度: O(M * N)
      */
     public boolean exist(char[][] board, String word) {
         int height = board.length;
