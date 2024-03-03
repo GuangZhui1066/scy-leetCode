@@ -5,7 +5,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
-import javafx.util.Pair;
+//import javafx.util.Pair;
 import tree.common.TreeNode;
 
 /**
@@ -31,31 +31,31 @@ public class MaxWidth {
 
         int maxWidth = 0;
         // 队列中存放的是 <节点，编号> 的键值对
-        Queue<Pair<TreeNode,Integer>> queue = new LinkedList<>();
-        // 根节点编号为 1
-        queue.offer(new Pair<>(root, 1));
-        while (!queue.isEmpty()) {
-            List<Pair<TreeNode,Integer>> currentLevelNodes = new ArrayList<>();
-            while (!queue.isEmpty()) {
-                currentLevelNodes.add(queue.poll());
-            }
-
-            // 当前层最右边的节点编号和最左边的节点编号之差即为当前层宽度
-            int currentWidth = currentLevelNodes.get(currentLevelNodes.size() - 1).getValue() - currentLevelNodes.get(0).getValue() + 1;
-            maxWidth = Math.max(currentWidth, maxWidth);
-
-            // 将下一层的所有节点入队
-            for (Pair<TreeNode, Integer> pair : currentLevelNodes) {
-                Integer num = pair.getValue();
-                TreeNode node = pair.getKey();
-                if (node.left != null) {
-                    queue.offer(new Pair<>(node.left, num * 2));
-                }
-                if (node.right != null) {
-                    queue.offer(new Pair<>(node.right, num * 2 + 1));
-                }
-            }
-        }
+//        Queue<Pair<TreeNode,Integer>> queue = new LinkedList<>();
+//        // 根节点编号为 1
+//        queue.offer(new Pair<>(root, 1));
+//        while (!queue.isEmpty()) {
+//            List<Pair<TreeNode,Integer>> currentLevelNodes = new ArrayList<>();
+//            while (!queue.isEmpty()) {
+//                currentLevelNodes.add(queue.poll());
+//            }
+//
+//            // 当前层最右边的节点编号和最左边的节点编号之差即为当前层宽度
+//            int currentWidth = currentLevelNodes.get(currentLevelNodes.size() - 1).getValue() - currentLevelNodes.get(0).getValue() + 1;
+//            maxWidth = Math.max(currentWidth, maxWidth);
+//
+//            // 将下一层的所有节点入队
+//            for (Pair<TreeNode, Integer> pair : currentLevelNodes) {
+//                Integer num = pair.getValue();
+//                TreeNode node = pair.getKey();
+//                if (node.left != null) {
+//                    queue.offer(new Pair<>(node.left, num * 2));
+//                }
+//                if (node.right != null) {
+//                    queue.offer(new Pair<>(node.right, num * 2 + 1));
+//                }
+//            }
+//        }
 
         return maxWidth;
     }
