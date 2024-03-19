@@ -5,16 +5,11 @@ import linkedlist.common.ListUtil;
 import org.junit.Test;
 
 /**
- * 在一个递增的链表中，删除重复的元素节点
- *
- * 举例：
- *   1 -> 2 -> 3 -> 3 -> 4 -> 4 -> 5
- *   删除重复节点后：
- *   1 -> 2 -> 5
+ * 82. 删除排序链表中的重复元素2
  */
-public class DeleteDuplicate {
+public class DeleteDuplicates2 {
 
-    public ListNode deleteDuplicate(ListNode head) {
+    public ListNode deleteDuplicates(ListNode head) {
         ListNode dummy = new ListNode(0, head);
         ListNode pre = dummy, cur = head, next;
         ListNode oldCur;
@@ -51,7 +46,7 @@ public class DeleteDuplicate {
         String listStr = "[1,1,1,2,2,3,3]";
 
         ListNode head = ListUtil.constructListByStr(listStr);
-        System.out.println(deleteDuplicate(head));
+        System.out.println(deleteDuplicates(head));
     }
 
 }
