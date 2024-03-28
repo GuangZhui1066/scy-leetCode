@@ -4,12 +4,16 @@ import org.junit.Test;
 import tree.common.TreeNode;
 
 /**
- * 根据前序遍历和中序遍历构造二叉树
+ * 105. 从前序和中序遍历序列构造二叉树
  *
  * 根据前序遍历无法确定出唯一的二叉树，因为不知道哪些是左子树哪些是右子数
  * 但是根据前序遍历和中序遍历，可以确定出唯一的二叉树
  */
 public class BuildByPreAndInOrder {
+
+    public TreeNode buildTree(int[] preorder, int[] inorder) {
+        return buildByPreorderAndInorder(preorder, 0, preorder.length-1, inorder, 0, inorder.length-1);
+    }
 
     /**
      * 前序遍历中，第一个元素是根节点
@@ -53,7 +57,7 @@ public class BuildByPreAndInOrder {
         int[] preOrder = {3,9,8,7,4};
         int[] inOrder = {9,3,7,8,4};
 
-        TreeNode root = buildByPreorderAndInorder(preOrder, 0, 4, inOrder, 0, 4);
+        TreeNode root = buildTree(preOrder, inOrder);
         System.out.println(root);
     }
 
